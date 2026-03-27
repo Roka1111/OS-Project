@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 
 echo -e "\n HELLO, SELECT A CHOICE FOR A HARDWARE AND SOFTWARE REPORT \n"
@@ -12,16 +12,26 @@ read choice
 if [ "$choice" -eq 1 ]; then
     echo -e "\n Full Report..."
     ./full.sh
+    ./full.sh > Full_Report.txt
+    ./mail.sh Full_Report.txt
 
 elif [ "$choice" -eq 2 ]; then
     echo -e "\n Small Report..."
     ./summary.sh
+    ./summary.sh > Short_Report.txt
+    ./mail.sh Short_Report.txt
 
 elif [ "$choice" -eq 3 ]; then
     echo -e "\n[+] Both Reports..."
     ./full.sh
     ./summary.sh
+    ./full.sh > Full_Report.txt
+    ./mail.sh Full_Report.txt
+    ./summary.sh > Short_Report.txt
+    ./mail.sh Short_Report.txt
 
 else 
     echo -e "\n[!] INVALID CHOICE! Please run the script again." 
 fi
+
+
